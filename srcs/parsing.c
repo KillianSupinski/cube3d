@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:26:48 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/11/25 16:05:50 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:58:08 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ void    parsing_arg(int ac, char *filename)
     }
     if (ft_strcmp(&filename[ft_strlen(filename) - 4], ".cub") != 0)
     {
-        printf("Error\nInvalid file extension\n");
+        printf("Error\nInvalid file extension. Expected .cub file.\n");
         exit(1);
     }
 }
-
 
 char **ft_realloc_file(char **file, char *line, int height)
 {
@@ -91,11 +90,60 @@ void print_map(t_game *game)
         printf("%s", game->file_lines[i]);
         i++;
     }
+    printf("\n");
 }
+
+void print_config(t_game *game)
+{
+    printf("NO Texture: %s\n", game->tex.no_path);
+    printf("SO Texture: %s\n", game->tex.so_path);
+    printf("WE Texture: %s\n", game->tex.we_path);
+    printf("EA Texture: %s\n", game->tex.ea_path);
+    printf("Floor Color: R=%d, G=%d, B=%d\n", game->tex.floor.r, game->tex.floor.g, game->tex.floor.b);
+    printf("Ceiling Color: R=%d, G=%d, B=%d\n", game->tex.ceiling.r, game->tex.ceiling.g, game->tex.ceiling.b);
+}
+
+void print_map_info(t_map *map)
+{
+    int i;
+
+    printf("Map Height: %d\n", map->height);
+    printf("Map Width: %d\n", map->width);
+    printf("Map Grid:\n");
+    i = 0;
+    while (i < map->height)
+    {
+        printf("%s\n", map->grid[i]);
+        i++;
+    }
+}
+
+// void print_textures(t_game *game)
+// {
+//     printf("NO int:%d, NO Texture: %s\n", game->tex.no, game->tex.no_path);
+//     printf("SO int:%d, SO Texture: %s\n", game->tex.so, game->tex.so_path);
+//     printf("WE int:%d, WE Texture: %s\n", game->tex.we, game->tex.we_path);
+//     printf("EA int:%d, EA Texture: %s\n", game->tex.ea, game->tex.ea_path);
+//     printf("Floor Color: R=%d, G=%d, B=%d\n", game->tex.floor.r, game->tex.floor.g, game->tex.floor.b);
+//     printf("Ceiling Color: R=%d, G=%d, B=%d\n", game->tex.ceiling.r, game->tex.ceiling.g, game->tex.ceiling.b);
+// }
+
+
 
 void    parsing(int ac, char **av, t_game *game)
 {
     parsing_arg(ac, av[1]);
     init_file(av[1], game);
+    parse_file(game);
+    // print_textures(game);
+    if(!game->tex.no || !game->tex.so || !game->tex.we || !game->tex.ea \
+        || !game->tex.floor_set || !game->tex.ceiling_set)
+    {
+        printf("Error\nMissing texture definitions\n");
+        exit(1);
+    }
+    is_valid_map(game);
     print_map(game);
+    print_config(game);
+    print_map_info(&game->map);
 }

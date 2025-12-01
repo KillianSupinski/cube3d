@@ -23,7 +23,14 @@ INCLUDES    = -I$(INCDIR) -I$(LIBFT_PATH) -I$(MLX_PATH)
 
 # Source files
 SOURCES     = $(SRCDIR)/main.c \
-			  $(SRCDIR)/parsing.c
+			  $(SRCDIR)/parsing.c \
+			  $(SRCDIR)/parsing_file.c \
+			  $(SRCDIR)/parsing_color.c \
+			  $(SRCDIR)/parsing_tex.c \
+			  $(SRCDIR)/parsing_utils.c \
+			  $(SRCDIR)/parsing_map.c \
+			  $(SRCDIR)/parsing_tex_utils.c \
+			  $(SRCDIR)/init_all_mlx.c
 
 
 # Object files and dependencies
