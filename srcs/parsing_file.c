@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 10:04:25 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/01 15:18:54 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:59:34 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ void check_after_map_empty_lines(t_game *game, int line_index)
     while (game->file_lines[line_index])
     {
         if (!is_empty_line(game->file_lines[line_index]))
-        {
-            printf("Error\nNon-empty line found after map definition\n");
-            exit(1);
-        }
+            error_exit(game, "Error\nNon-empty line found after map definition\n");
         line_index++;
     }
 }
@@ -81,18 +78,12 @@ void build_map(t_game *game, int start_line)
     i = 0;
     game->map.grid = (char **)malloc(sizeof(char *) * (game->map.height + 1));
     if (!game->map.grid)
-    {
-        printf("Error\nMemory allocation failed\n");
-        exit(1);
-    }
+        error_exit(game, "Error\nMemory allocation failed\n");
     while (i < game->map.height)
     {
         game->map.grid[i] = (char *)malloc(sizeof(char) * (game->map.width + 1));
         if (!game->map.grid[i])
-        {
-            printf("Error\nMemory allocation failed\n");
-            exit(1);
-        }
+            error_exit(game, "Error\nMemory allocation failed\n");
         len = ft_strlen(game->file_lines[start_line + i]);
         if (len > 0 && game->file_lines[start_line + i][len - 1] == '\n')
             len--;
@@ -126,10 +117,7 @@ int    parse_file(t_game *game)
         {
             tmp = ft_split(game->file_lines[i], ' ');
             if (!tmp)
-            {
-                printf("Error\nMemory allocation failed\n");
-                exit(1);
-            }
+                error_exit(game, "Error\nMemory allocation failed\n");
             parse_line(tmp, game);
             free_split(tmp);
         }

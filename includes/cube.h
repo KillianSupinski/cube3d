@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:17:12 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/01 15:42:14 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:39:31 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,32 @@
 # include <string.h>
 # include <stdio.h>
 # include <fcntl.h>
-
+# include <math.h>
+# include "mlx.h"
 #define WIN_W 800
 #define WIN_H 600
-	
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}   			t_ray;
+
 typedef struct s_color {
 	int r;
 	int g;
@@ -80,6 +102,7 @@ typedef struct s_game {
 	t_tex		tex;
 	t_player	player;
     char        **file_lines;
+	t_ray		ray;
 	t_mlx		mlx;
 }	t_game;
 
@@ -102,4 +125,19 @@ int count_tokens(char **tokens);
 int text_cmp(char **tokens);
 int parse_tex(char **tokens, t_game *game);
 void  init_mlx(t_game *game);
+void load_all_textures(t_game *game);
+int handle_keypress(int keycode, t_game *game);
+int handle_close(t_game *game);
+void destroy_all(t_game *game, int exit_code);
+void error_exit(t_game *game, char *message);
+int render(t_game *game);
+void  draw_background(t_game *game);
+void raycast_column(t_game *game, int x);
+void put_pixel(t_img *img, int x, int y, int color);
+int rgb_to_int(t_color color);
+void init_raycasting(t_game *game, t_ray *r, int x);
+void init_step_and_side_dist(t_game *game, t_ray *r);
+void perform_dda(t_game *game, t_ray *r);
+void calculate_perp_wall_dist(t_game *game, t_ray *r);
+void draw_wall_column(t_game *game, t_ray *r, int x);
 #endif

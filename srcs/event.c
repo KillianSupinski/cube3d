@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 14:17:24 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/08 15:16:08 by ksupinsk         ###   ########.fr       */
+/*   Created: 2025/12/02 13:38:49 by ksupinsk          #+#    #+#             */
+/*   Updated: 2025/12/02 14:54:30 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int main(int ac, char **av)
+int handle_keypress(int keycode, t_game *game)
 {
-    t_game game;
-    ft_bzero(&game, sizeof(t_game));
-    parsing(ac, av, &game);
-    init_mlx(&game);
-    load_all_textures(&game);
-    mlx_hook(game.mlx.win_ptr, 2, 1L<<0, handle_keypress, &game);
-    mlx_hook(game.mlx.win_ptr, 17, 0, handle_close, &game);
-    mlx_loop_hook(game.mlx.mlx_ptr, render, &game);
-    mlx_loop(game.mlx.mlx_ptr);
+    if (keycode == 65307 || keycode == 53)
+        destroy_all(game, 0);
+    return (0);
+}
+
+int handle_close(t_game *game)
+{
+    destroy_all(game, 0);
     return (0);
 }

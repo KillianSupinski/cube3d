@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:54:39 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/01 15:35:30 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:00:21 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ void check_map_chars_and_players(t_game *game)
         {
             c = game->map.grid[x][y];
             if (c != '0' && c != '1' && c != ' ' && !is_player_char(c))
-            {
-                printf("Error\nInvalid character '%c' in map\n", c);
-                exit(1);
-            }
+                error_exit(game, "Error\nInvalid character in map\n");
             else if(is_player_char(c))
             {
                 player_count++;
@@ -82,10 +79,7 @@ void check_map_chars_and_players(t_game *game)
         x++;
     }
     if (player_count != 1)
-    {
-        printf("Error\nInvalid number of player start positions: %d\n", player_count);
-        exit(1);
-    }
+        error_exit(game, "Error\nInvalid number of player start positions\n");
 }
 
 
@@ -103,16 +97,10 @@ void check_map_closed(t_game *game)
             if (game->map.grid[x][y] == '0' || is_player_char(game->map.grid[x][y]))
             {
                 if (x == 0 || y == 0 || x == game->map.height - 1 || y == game->map.width - 1)
-                {
-                    printf("Error\nMap is not closed at edge (%d, %d)\n", x, y);
-                    exit(1);
-                }
+                    error_exit(game, "Error\nMap is not closed at edge\n");
                 if (game->map.grid[x - 1][y] == ' ' || game->map.grid[x + 1][y] == ' ' ||
                     game->map.grid[x][y - 1] == ' ' || game->map.grid[x][y + 1] == ' ')
-                {
-                    printf("Error\nMap is not closed around (%d, %d)\n", x, y);
-                    exit(1);
-                }
+                    error_exit(game, "Error\nMap is not closed around\n");
             }
             y++;
         }

@@ -30,7 +30,12 @@ SOURCES     = $(SRCDIR)/main.c \
 			  $(SRCDIR)/parsing_utils.c \
 			  $(SRCDIR)/parsing_map.c \
 			  $(SRCDIR)/parsing_tex_utils.c \
-			  $(SRCDIR)/init_all_mlx.c
+			  $(SRCDIR)/init_all_mlx.c \
+			  $(SRCDIR)/event.c \
+			  $(SRCDIR)/free.c \
+			  $(SRCDIR)/raycast.c \
+			  $(SRCDIR)/render_utils.c \
+			  $(SRCDIR)/render.c
 
 
 # Object files and dependencies

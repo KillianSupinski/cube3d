@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:17:16 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/01 15:18:57 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:01:32 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int parse_tex(char **tokens, t_game *game)
         return (0);
     n = count_tokens(tokens);
     if (n > 2)
-    {
-        printf("Error\nToo many arguments for texture definition, %d, tokens %s\n", n, tokens[0]);
-        exit(1);
-    }
+        error_exit(game, "Error\nToo many arguments for texture definition\n");
     if (ft_strcmp(tokens[0], "NO") == 0)
         return (parse_no(tokens, game), 1);
     else if (ft_strcmp(tokens[0], "SO") == 0)
