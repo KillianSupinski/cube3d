@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:17:12 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/08 15:39:31 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/10 12:25:22 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # include "mlx.h"
 #define WIN_W 800
 #define WIN_H 600
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.05
+# define KEY_ESC   65307
+# define KEY_W     119
+# define KEY_A     97
+# define KEY_S     115
+# define KEY_D     100
+# define KEY_LEFT  65361
+# define KEY_RIGHT 65363
 
 typedef struct s_ray
 {
@@ -140,4 +149,11 @@ void init_step_and_side_dist(t_game *game, t_ray *r);
 void perform_dda(t_game *game, t_ray *r);
 void calculate_perp_wall_dist(t_game *game, t_ray *r);
 void draw_wall_column(t_game *game, t_ray *r, int x);
+void move_forward(t_game *g);
+void move_backward(t_game *g);
+void strafe_left(t_game *g);
+void strafe_right(t_game *g);
+void rotate_left(t_game *g);
+void rotate_right(t_game *g);
+int is_walkable(t_game *game, double new_x, double new_y);
 #endif

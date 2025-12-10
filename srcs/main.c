@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:17:24 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/08 15:16:08 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/10 12:17:18 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int ac, char **av)
     load_all_textures(&game);
     mlx_hook(game.mlx.win_ptr, 2, 1L<<0, handle_keypress, &game);
     mlx_hook(game.mlx.win_ptr, 17, 0, handle_close, &game);
+    mlx_hook(game.mlx.win_ptr, 33, 0, handle_close, &game);
     mlx_loop_hook(game.mlx.mlx_ptr, render, &game);
     mlx_loop(game.mlx.mlx_ptr);
     return (0);

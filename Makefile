@@ -35,7 +35,9 @@ SOURCES     = $(SRCDIR)/main.c \
 			  $(SRCDIR)/free.c \
 			  $(SRCDIR)/raycast.c \
 			  $(SRCDIR)/render_utils.c \
-			  $(SRCDIR)/render.c
+			  $(SRCDIR)/render.c \
+			  $(SRCDIR)/movement.c \
+			  $(SRCDIR)/movement_utils.c
 
 
 # Object files and dependencies
