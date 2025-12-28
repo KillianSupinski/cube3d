@@ -3,7 +3,7 @@ static char *wall_north[] = {
 /* width height num_colors chars_per_pixel */
 "4 4 1 1",
 /* colors */
-"a c #e46008ff",
+"a c #00FF00",
 /* pixels */
 "aaaa",
 "aaaa",
