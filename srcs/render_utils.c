@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:56:12 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/28 22:46:00 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:26:25 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,19 @@ void	init_texinfo(t_game *game, t_ray *r, t_texinfo *t)
 	t->pos = (r->draw_start - WIN_H / 2 + r->line_height / 2) * t->step;
 }
 
-// WE: 2 SO: 1 NO: 0 EA: 3
 int	get_tex_id(t_ray *r)
 {
 	if (r->side == 0)
 	{
 		if (r->ray_dir_x > 0)
-			return (tex_ea);
+			return (TEX_EA);
 		else
-			return (tex_we);
+			return (TEX_WE);
 	}
 	else
 	{
 		if (r->ray_dir_y > 0)
-			return (tex_so);
-		return (tex_no);
+			return (TEX_SO);
+		return (TEX_NO);
 	}
 }

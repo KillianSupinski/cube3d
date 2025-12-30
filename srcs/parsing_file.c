@@ -6,19 +6,16 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 10:04:25 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/28 22:46:29 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:31:27 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int	parse_line(char **tokens, t_game *game)
+void	parse_line(char **tokens, t_game *game)
 {
-	if (parse_tex(tokens, game))
-		return (1);
-	if (parse_color(tokens, game))
-		return (1);
-	return (0);
+	parse_tex(tokens, game);
+	parse_color(tokens, game);
 }
 
 void	print_tmp(char **tmp)
@@ -119,8 +116,7 @@ int	parse_file(t_game *game)
 			tmp = ft_split(game->file_lines[i], ' ');
 			if (!tmp)
 				error_exit(game, "Memory allocation failed\n");
-			if (parse_line(tmp, game))
-				error_exit(game, "Invalid line in configuration\n");
+			parse_line(tmp, game);
 			free_split(tmp);
 		}
 		i++;

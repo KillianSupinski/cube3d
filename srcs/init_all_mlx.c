@@ -6,7 +6,7 @@
 /*   By: ksupinsk <ksupinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:41:15 by ksupinsk          #+#    #+#             */
-/*   Updated: 2025/12/28 22:46:38 by ksupinsk         ###   ########.fr       */
+/*   Updated: 2025/12/28 23:06:25 by ksupinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	load_textures(t_game *game, t_img *img, char *path)
 
 void	load_all_textures(t_game *game)
 {
-	load_textures(game, &game->mlx.tex[tex_no], game->tex.no_path);
-	load_textures(game, &game->mlx.tex[tex_so], game->tex.so_path);
-	load_textures(game, &game->mlx.tex[tex_ea], game->tex.ea_path);
-	load_textures(game, &game->mlx.tex[tex_we], game->tex.we_path);
+	load_textures(game, &game->mlx.tex[TEX_NO], game->tex.no_path);
+	load_textures(game, &game->mlx.tex[TEX_SO], game->tex.so_path);
+	load_textures(game, &game->mlx.tex[TEX_EA], game->tex.ea_path);
+	load_textures(game, &game->mlx.tex[TEX_WE], game->tex.we_path);
 }
